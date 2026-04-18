@@ -1,0 +1,18 @@
+# Claude Code memory (private - local only)
+.claude/
+
+# Environment variables with secrets
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python (for future pipeline/)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
