@@ -1,5 +1,6 @@
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, SafeAreaView } from 'react-native';
 import { supabase } from '../lib/supabase';
+import Ingredients from './Ingredients';
 
 export default function Account({ session }) {
   async function signOut() {
@@ -7,42 +8,41 @@ export default function Account({ session }) {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome!</Text>
-      <Text style={styles.email}>{session.user.email}</Text>
-      <Text style={styles.hint}>You are logged in.</Text>
-
-      <View style={styles.button}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.hello}>Hi,</Text>
+          <Text style={styles.email}>{session.user.email}</Text>
+        </View>
         <Button title="Sign out" onPress={signOut} />
       </View>
-    </View>
+
+      <Ingredients session={session} />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
     backgroundColor: '#fff',
   },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 10,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  hello: {
+    fontSize: 12,
+    color: '#888',
   },
   email: {
-    fontSize: 16,
-    color: '#333',
-    marginBottom: 10,
-  },
-  hint: {
     fontSize: 14,
-    color: '#888',
-    marginBottom: 30,
-  },
-  button: {
-    marginTop: 20,
+    color: '#333',
+    fontWeight: '500',
   },
 });
